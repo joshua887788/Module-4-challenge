@@ -99,7 +99,7 @@ const quiz = [
     const initials = prompt("Enter your initials:");
     const result = { initials, score };
     let leaderboardData = JSON.parse(localStorage.getItem("leaderboard")) || [];
-    leaderboardData.push(result);
+    leaderboardData.push(result);   
     localStorage.setItem("leaderboard", JSON.stringify(leaderboardData));
     renderLeaderboard();
     leaderboardTitle.removeEventListener("click");
@@ -107,17 +107,19 @@ const quiz = [
   
   function renderLeaderboard() {
     document.body.textContent = "";
-  
+   const headerEl = document.createElement("header")
+   headerEl.classList.add("d-flex")
+   headerEl.classList.add("justify-content-center")
     const leaderboardTitle = document.createElement("a");
     leaderboardTitle.href = "#";
     leaderboardTitle.textContent = "Leaderboard ";
-    document.body.appendChild(leaderboardTitle);
+    headerEl.appendChild(leaderboardTitle);
   
     const restartLink = document.createElement("a");
     restartLink.href = "index.html";
     restartLink.textContent = " Restart Quiz";
-    document.body.appendChild(restartLink);
-  
+    headerEl.appendChild(restartLink);
+    document.body.append(headerEl)
     const leaderboardContainer = document.createElement("div");
     leaderboardContainer.id = "leaderboardContainer";
     leaderboardContainer.style.textAlign = "center";
